@@ -1,3 +1,4 @@
+
 # Personal Finance Management System (PFMS)
 
 ## Overview
@@ -90,83 +91,82 @@ This command will start all the services, including the API Gateway, User Servic
 
 The React UI can be served using Nginx or another web server, and it can be integrated into the Docker Compose setup or deployed separately on platforms like Netlify or Vercel.
 
-#### Running the React UI
+##### Running the React UI
 
-	1.	Development Mode
-
-    ```bash
-    cd pfms-ui
-    npm start
-    ```
-
+1. **Development Mode**
+```bash
+cd pfms-ui
+npm start
+```
 This will start the development server at http://localhost:3000.
 
 ### 4. Health check for the api gateway 
 
-    ```bash
-    curl http://localhost:8080/actuator/health
-    ```
+```bash
+curl http://localhost:8080/actuator/health
+```
 
-The expected output is:
+Expected output:
 
-    ```bash
-    {"status":"UP"}
-    ```
+```bash
+{"status":"UP"}
+```
 
 ### 5. Reactive Microservices Architecture with Messaging
 
-    ```bash
-    +--------------------+
-    |                    |
-    |      React UI      |
-    |    (pfms-ui)       |
-    |                    |
-    +---------+----------+
-            |
-            | 1. UI sends a request to API Gateway (via HTTP).
-            |
-            v
-    +---------+----------+
-    |                    |
-    |    API Gateway     |  
-    |  (api-gateway)     |  
-    |                    |
-    +---------+----------+
-            |
-            | 2. API Gateway routes request to appropriate microservice (via HTTP).
-            |
-            v
-    +---------+----------+
-    |                    |
-    |   Microservice A   |  
-    |   (e.g., Budget    |
-    |   Service)         |
-    |                    |
-    +---------+----------+
-            |
-            | 3. Microservice A processes the request (e.g., saves data to DB).
-            | 4. Microservice A publishes a message to Message Broker (e.g., Kafka, RabbitMQ).
-            |
-            v
-    +---------+----------+             +--------------------+
-    |                    | 5. Message |                    |
-    |  Message Broker    |<-----------+   Microservice B    |
-    | (Kafka/RabbitMQ)   |   sent to  |   (e.g., Reporting  |
-    |                    |  subscribed|   Service)          |
-    +--------------------+  services. +---------+----------+
-                                        |    6. Subscriber receives message from broker.
-                                        |    7. Processes the message and performs operations.
-                                        |
-                                        +--->8. Publishes a new message/JSON back to Message Broker.
-                                                    
-    ```
+```bash
++--------------------+
+|                    |
+|      React UI      |
+|    (pfms-ui)       |
+|                    |
++---------+----------+
+        |
+        | 1. UI sends a request to API Gateway (via HTTP).
+        |
+        v
++---------+----------+
+|                    |
+|    API Gateway     |  
+|  (api-gateway)     |  
+|                    |
++---------+----------+
+        |
+        | 2. API Gateway routes request to appropriate microservice (via HTTP).
+        |
+        v
++---------+----------+
+|                    |
+|   Microservice A   |  
+|   (e.g., Budget    |
+|   Service)         |
+|                    |
++---------+----------+
+        |
+        | 3. Microservice A processes the request (e.g., saves data to DB).
+        | 4. Microservice A publishes a message to Message Broker (e.g., Kafka, RabbitMQ).
+        |
+        v
++---------+----------+             +--------------------+
+|                    | 5. Message |                    |
+|  Message Broker    |<-----------+   Microservice B    |
+| (Kafka/RabbitMQ)   |   sent to  |   (e.g., Reporting  |
+|                    |  subscribed|   Service)          |
++--------------------+  services. +---------+----------+
+                                |    6. Subscriber receives message from broker.
+                                |    7. Processes the message and performs operations.
+                                |
+                                +--->8. Publishes a new message/JSON back to Message Broker.
+```
 
-This architecture, named **Reactive Microservices Architecture with Messaging**, enables asynchronous communication between services via a message broker, promoting scalability, decoupling, and resilience. By following this architecture, each service can perform its task independently and communicate the results to other services, which improves the overall performance and reliability of your system.
+This **Reactive Microservices Architecture with Messaging** enables asynchronous communication between services via a message broker, promoting scalability, decoupling, and resilience. By following this architecture, each service can perform its task independently and communicate the results to other services, which improves the overall performance and reliability of your system.
+
+---
 
 ## About the Maintainer
 
-This project is currently maintained by KUSHAGRA SIKKA, a detail-oriented data enthusiast with a passion for building robust and scalable systems.
+This project is currently maintained by **Deekshitha Obulreddygari**, a Java Full Stack Developer passionate about building robust, scalable systems.
 
-- **GitHub:** [KushagraSikka](https://github.com/KushagraSikka)
-- **LinkedIn:** [Kushagra Sikka](https://linkedin.com/in/kushagrasikka)
-- **Email:** kushagrasikka@gmail.com
+- **GitHub:** [Deekshithaaa](https://github.com/Deekshithaaa)
+- **LinkedIn:** [Deekshitha Obulreddygari](https://linkedin.com/in/deekshitha-obulreddygari)
+- **Email:** obulreddygarideekshitha@gmail.com
